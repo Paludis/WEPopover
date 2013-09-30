@@ -49,6 +49,7 @@
 @property (nonatomic, retain) id <NSObject> context;
 @property (nonatomic, assign) UIView *parentView;
 @property (nonatomic, copy) NSArray *passthroughViews;
+@property (nonatomic, strong) UIColor* bgColor;
 
 - (id)initWithContentViewController:(UIViewController *)theContentViewController;
 

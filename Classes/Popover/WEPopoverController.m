@@ -36,6 +36,7 @@
 @synthesize containerViewProperties;
 @synthesize context;
 @synthesize passthroughViews;
+@synthesize bgColor;
 
 - (id)init {
 	if ((self = [super init])) {
@@ -46,6 +47,7 @@
 - (id)initWithContentViewController:(UIViewController *)viewController {
 	if ((self = [self init])) {
 		self.contentViewController = viewController;
+        self.bgColor = [UIColor clearColor];
 	}
 	return self;
 }
@@ -157,7 +159,7 @@
 									   UIViewAutoresizingFlexibleTopMargin |
 									   UIViewAutoresizingFlexibleHeight |
 									   UIViewAutoresizingFlexibleBottomMargin);
-	backgroundView.backgroundColor = [UIColor clearColor];
+	backgroundView.backgroundColor = self.bgColor;
 	backgroundView.delegate = self;
 	
 	[keyView addSubview:backgroundView];
@@ -180,6 +182,7 @@
 	popoverVisible = YES;
 	if (animated) {
 		self.view.alpha = 0.0;
+        backgroundView.alpha = 0.0;
         
         [UIView animateWithDuration:FADE_DURATION
                               delay:0.0
@@ -187,6 +190,7 @@
                          animations:^{
                              
                              self.view.alpha = 1.0;
+                             backgroundView.alpha = 1.0;
                              
                          } completion:^(BOOL finished) {
                              
@@ -313,6 +317,7 @@
                              animations:^{
                                  
                                  self.view.alpha = 0.0;
+                                 backgroundView.alpha = 0.0;
                                  
                              } completion:^(BOOL finished) {
                                  
